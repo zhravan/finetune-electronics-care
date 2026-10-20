@@ -1,0 +1,8 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowUpRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { PageIntro } from '@/components/site/page-intro';
+import { pageHead } from '@/lib/seo';
+import engineering from '@/assets/engineering.jpg';
+export const Route = createFileRoute('/careers')({ head: () => pageHead('Careers in electronics services', 'Explore work areas at Finetune Electronics, including assembly, testing, engineering and operations. Enquire about current opportunities.', '/careers'), component: Careers });
+function Careers() { return <main><PageIntro eyebrow="People & possibilities" title="Build something considered." description="An interest in electronics. An eye for detail. A willingness to solve problems together. These are the qualities we value."/><section className="site-container grid items-start gap-12 pb-24 md:grid-cols-2"><img src={engineering} alt="Illustrative electronics engineering and testing work" width={1440} height={1000} className="aspect-[4/3] w-full rounded-md object-cover"/><div><h2 className="text-2xl font-medium">Areas of interest</h2><div className="mt-6 divide-y divide-border">{['Electronics assembly & testing','Hardware & firmware engineering','Accounts & operations'].map(t=><p key={t} className="py-5">{t}</p>)}</div><p className="mt-6 leading-7 text-muted-foreground">These are areas of work, not confirmed vacancies. Get in touch to discuss current opportunities and the experience you could bring.</p><Button asChild className="mt-7"><Link to="/contact">Careers enquiry <ArrowUpRight /></Link></Button></div></section></main>; }
