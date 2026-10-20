@@ -93,6 +93,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Finetune Electronics",
+          description: "Electronics design and manufacturing services: PCB assembly, box build, PCB layout, enclosures, engineering and component procurement.",
+          knowsAbout: ["PCB assembly", "Box build", "PCB layout", "Mechanical enclosures", "Electronics engineering", "Component procurement"],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
