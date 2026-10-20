@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { PageIntro } from '@/components/site/page-intro';
 import { services } from '@/lib/services';
 import { pageHead } from '@/lib/seo';
-export const Route = createFileRoute('/contact')({ validateSearch: (search: Record<string, unknown>): {service?: string} => ({ service: typeof search.service === 'string' ? search.service : undefined }), head: () => pageHead('Discuss your electronics project', 'Prepare your Finetune Electronics project enquiry for PCB assembly, design, box build, enclosures, engineering or component procurement.', '/contact'), component: Contact });
+export const Route = createFileRoute('/contact')({ validateSearch: (search: Record<string, unknown>): {service?: string} => typeof search['service'] === 'string' ? {service: search['service']} : {}, head: () => pageHead('Discuss your electronics project', 'Prepare your Finetune Electronics project enquiry for PCB assembly, design, box build, enclosures, engineering or component procurement.', '/contact'), component: Contact });
 function Contact() {
  const {service} = Route.useSearch();
  const [saved,setSaved]=useState(false);
