@@ -11,5 +11,5 @@
 
 - Public pages share the root site shell and reusable brand controls so identity and navigation stay consistent.
 - Service content lives in a shared catalog rendered through a dynamic service route so each service has a crawlable URL and distinct metadata.
-- Public metadata uses relative self-referencing canonicals until a public domain is supplied; do not invent a sitemap hostname.
+- Public metadata uses relative canonicals; the sitemap and robots.txt use the production origin from src/lib/site.ts (VITE_SITE_URL override), and every route declares staticData.sitemap so pages are listed automatically.
 - Enquiry preparation stays browser-only until real company contact details or a delivery service are provided; do not claim submissions are sent.

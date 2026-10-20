@@ -15,6 +15,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjectGuideRouteImport } from './routes/project-guide'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesServiceRouteImport } from './routes/services.$service'
 
@@ -48,6 +49,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
   '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/$service': typeof ServicesServiceRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/$service': typeof ServicesServiceRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
   '/services': typeof ServicesRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/$service': typeof ServicesServiceRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/project-guide'
     | '/services'
+    | '/sitemap.xml'
     | '/services/$service'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/project-guide'
+    | '/sitemap.xml'
     | '/services/$service'
     | '/services'
   id:
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/project-guide'
     | '/services'
+    | '/sitemap.xml'
     | '/services/$service'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ProjectGuideRoute: typeof ProjectGuideRoute
   ServicesRoute: typeof ServicesRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/'
@@ -212,6 +232,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ProjectGuideRoute: ProjectGuideRoute,
   ServicesRoute: ServicesRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
