@@ -1,0 +1,3 @@
+export function Brand({ compact = false }: { compact?: boolean }) {
+  return <span className="flex items-center gap-3"><svg className="h-9 w-9 shrink-0 text-accent" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 29V11h8v18m8 0V5h8v24m8 0V15" stroke="currentColor" strokeWidth="4"/><path d="M4 35h32" stroke="currentColor" strokeWidth="3"/></svg><span className="flex flex-col"><span className="text-xl font-semibold leading-none">finetune<span className="text-accent">.</span></span>{!compact && <span className="mt-1.5 font-mono text-[10px] uppercase tracking-normal">Electronics</span>}</span></span>;
+}

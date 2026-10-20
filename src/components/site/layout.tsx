@@ -1,0 +1,18 @@
+import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Brand } from './brand';
+import { services } from '@/lib/services';
+
+const nav = [{ to: '/services', label: 'Services' }, { to: '/about', label: 'Company' }, { to: '/project-guide', label: 'Project guide' }, { to: '/careers', label: 'Careers' }] as const;
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  return <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl"><div className="site-container flex h-20 items-center justify-between gap-4"><Link to="/" aria-label="Finetune Electronics home" onClick={() => setOpen(false)}><Brand /></Link><nav aria-label="Main navigation" className="hidden items-center gap-7 lg:flex">{nav.map(n => <Link key={n.to} to={n.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: 'text-foreground' }}>{n.label}</Link>)}</nav><div className="flex items-center gap-2"><Button asChild className="h-10 bg-accent text-accent-foreground shadow-none hover:bg-accent/80"><Link to="/contact" onClick={() => setOpen(false)}>Let’s talk <ArrowUpRight /></Link></Button><Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button></div></div>{open && <nav aria-label="Mobile navigation" className="site-container flex flex-col gap-5 border-t border-border py-6 lg:hidden">{nav.map(n => <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="text-lg">{n.label}</Link>)}</nav>}</header>;
+}
+export function ProjectCTA() {
+ return <section className="border-t border-border bg-accent text-accent-foreground"><div className="site-container flex flex-col items-start justify-between gap-8 py-16 md:flex-row md:items-center"><div><p className="eyebrow mb-4">Your next build</p><h2 className="text-3xl font-medium md:text-5xl">Let’s get the details right.</h2></div><Button asChild size="lg" className="h-12"><Link to="/contact">Discuss your project <ArrowUpRight /></Link></Button></div></section>;
+}
+export function SiteFooter() {
+ return <footer className="bg-ink text-ink-foreground"><div className="site-container grid gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr]"><div><Link to="/" aria-label="Finetune Electronics home"><Brand /></Link><p className="mt-6 max-w-xs text-sm leading-7 text-ink-foreground/65">Electronics manufacturing services.<br/>Considered design. Connected delivery.</p></div><div><p className="eyebrow mb-6 text-ink-foreground/50">Services</p><div className="flex flex-col gap-3">{services.map(s => <Link key={s.slug} to="/services/$service" params={{ service: s.slug }} className="text-sm text-ink-foreground/75 hover:text-accent">{s.title}</Link>)}</div></div><div><p className="eyebrow mb-6 text-ink-foreground/50">Finetune</p><div className="flex flex-col gap-3">{nav.filter(n=>n.to!=='/services').map(n=><Link key={n.to} to={n.to} className="text-sm text-ink-foreground/75 hover:text-accent">{n.label}</Link>)}<Link to="/contact" className="text-sm text-ink-foreground/75 hover:text-accent">Contact</Link></div></div></div><div className="site-container flex flex-col justify-between gap-3 border-t border-ink-foreground/15 py-6 text-xs text-ink-foreground/50 sm:flex-row"><span>© {new Date().getFullYear()} Finetune Electronics</span><span>Service imagery is illustrative.</span></div></footer>;
+}
