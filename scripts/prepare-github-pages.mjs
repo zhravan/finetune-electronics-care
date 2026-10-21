@@ -36,7 +36,7 @@ export async function preparePages(output = '.output/public', siteUrl = process.
   const publicUrl = (path) => `${origin}${basePath}${path === '/' ? '/' : path}`;
   await writeFile(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.sort().map(path => `<url><loc>${escape(publicUrl(path))}</loc></url>`).join('')}</urlset>`);
   const robots = await readFile(resolve(root, 'robots.txt'), 'utf8');
-  await writeFile(resolve(root, 'robots.txt'), `${robots.replace(/^Sitemap:.*\\n?/gm, '').trim()}\\n\\nSitemap: ${publicUrl('/sitemap.xml')}\\n`);
+  await writeFile(resolve(root, 'robots.txt'), `${robots.replace(/^Sitemap:.*\n?/gm, '').trim()}\n\nSitemap: ${publicUrl('/sitemap.xml')}\n`);
   await writeFile(resolve(root, '.nojekyll'), '');
   return paths;
 }
