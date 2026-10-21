@@ -14,7 +14,7 @@ export function pagesOrigin(value) {
   return { origin: url.origin, basePath: pathname };
 }
 
-export async function preparePages(output, siteUrl) {
+export async function preparePages(output = '.output/public', siteUrl = process.env.VITE_SITE_URL) {
   const { origin, basePath } = pagesOrigin(siteUrl);
   const root = resolve(output);
   const paths = [];
@@ -42,6 +42,6 @@ export async function preparePages(output, siteUrl) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const paths = await preparePages('dist/client', process.env.VITE_SITE_URL);
+  const paths = await preparePages(process.argv[2] || '.output/public', process.env.VITE_SITE_URL);
   console.log(`Prepared ${paths.length} static Finetune pages for GitHub Pages.`);
 }
