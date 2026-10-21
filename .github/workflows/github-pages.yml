@@ -34,10 +34,10 @@ jobs:
       - name: Validate public site address
         run: node --input-type=module -e "import { pagesOrigin } from './scripts/prepare-github-pages.mjs'; pagesOrigin(process.env.VITE_SITE_URL);"
       - run: bun run build
-      - run: node scripts/prepare-github-pages.mjs
+      - run: node scripts/prepare-github-pages.mjs .output/public
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+          path: .output/public
   deploy:
     environment:
       name: github-pages
