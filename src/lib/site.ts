@@ -1,3 +1,5 @@
 // Production site origin used for the sitemap and robots.txt.
-// Override with VITE_SITE_URL (e.g. when a custom domain is connected).
-export const SITE_URL = (import.meta.env['VITE_SITE_URL'] as string | undefined)?.replace(/\/+$/, '') || 'https://finetune-electronics-care.lovable.app';
+// GitHub Pages project URLs include the repository path. Override with VITE_SITE_URL
+// when using a custom domain or a user/organization Pages site.
+const configured = (import.meta.env['VITE_SITE_URL'] as string | undefined)?.replace(/\/+$/, '');
+export const SITE_URL = configured || 'https://zhravan.github.io/finetune-electronics-care';
