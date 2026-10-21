@@ -3,16 +3,19 @@ import { resolve, relative, dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export function pagesOrigin(value) {
-  if (!value) throw new Error('Set the GitHub repository variable VITE_SITE_URL to your public GitHub Pages address.');
-  const url = new URL(value);
-  if (url.protocol !== 'https:' || url.pathname !== '/' || url.search || url.hash || url.username || url.password) {
-    throw new Error('Use an HTTPS site at the domain root: an owner.github.io repository or a custom domain. Repository subpaths are not supported by this setup.');
+  const candidate = value?.trim() || 'https://zhravan.github.io/finetune-electronics-care/';
+  const url = new URL(candidate);
+  if (url.protocol !== 'https:' || url.search || url.hash || url.username || url.password) {
+    throw new Error('VITE_SITE_URL must be a public HTTPS GitHub Pages URL or custom domain.');
   }
-  return url.origin;
+  // GitHub project Pages sites live below /<repository>/; custom domains and
+  // username.github.io sites live at /. Keep the path for sitemap generation.
+  const pathname = url.pathname.replace(/\/+$/, '');
+  return { origin: url.origin, basePath: pathname };
 }
 
 export async function preparePages(output, siteUrl) {
-  const origin = pagesOrigin(siteUrl);
+  const { origin, basePath } = pagesOrigin(siteUrl);
   const root = resolve(output);
   const paths = [];
   async function scan(folder) {
@@ -30,9 +33,10 @@ export async function preparePages(output, siteUrl) {
   await scan(root);
   if (!paths.includes('/')) throw new Error('Missing prerendered homepage; refusing to deploy.');
   const escape = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;');
-  await writeFile(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.sort().map(path => `<url><loc>${escape(origin + path)}</loc></url>`).join('')}</urlset>`);
+  const publicUrl = (path) => `${origin}${basePath}${path === '/' ? '/' : path}`;
+  await writeFile(resolve(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.sort().map(path => `<url><loc>${escape(publicUrl(path))}</loc></url>`).join('')}</urlset>`);
   const robots = await readFile(resolve(root, 'robots.txt'), 'utf8');
-  await writeFile(resolve(root, 'robots.txt'), `${robots.replace(/^Sitemap:.*\n?/gm, '').trim()}\n\nSitemap: ${origin}/sitemap.xml\n`);
+  await writeFile(resolve(root, 'robots.txt'), `${robots.replace(/^Sitemap:.*\\n?/gm, '').trim()}\\n\\nSitemap: ${publicUrl('/sitemap.xml')}\\n`);
   await writeFile(resolve(root, '.nojekyll'), '');
   return paths;
 }
