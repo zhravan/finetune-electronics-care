@@ -19,7 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: 'true'
-      VITE_SITE_URL: ${{ vars.VITE_SITE_URL }}
+      # The default is this repository's project Pages URL. Override for a custom domain.
+      VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://zhravan.github.io/finetune-electronics-care/' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
