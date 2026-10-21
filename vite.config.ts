@@ -1,17 +1,17 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - TanStack devtools (dev-only, first), tanstackStart, viteReact, tailwindcss, tsConfigPaths,
-//     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
-//     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const isGitHubPages = process.env["GITHUB_PAGES"] === "true";
+const siteUrl = (process.env["VITE_SITE_URL"] || "https://zhravan.github.io/finetune-electronics-care").replace(/\/+$/, "");
+const basePath = isGitHubPages ? new URL(siteUrl).pathname.replace(/\/+$/, "") + "/" : "/";
+
 export default defineConfig({
+  // GitHub Pages project sites are hosted under /<repository>/, not the domain root.
+  vite: {
+    base: basePath,
+  },
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
-    ...(process.env['GITHUB_PAGES'] === 'true' ? {
+    ...(isGitHubPages ? {
       pages: ['/', '/about', '/careers', '/contact', '/project-guide', '/services', '/services/pcb-assembly', '/services/box-build', '/services/pcb-layout', '/services/mechanical-enclosures', '/services/engineering', '/services/component-procurement'].map(path => ({ path })),
       prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false, failOnError: true },
     } : {}),
