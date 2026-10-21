@@ -1,14 +1,24 @@
-# Welcome to your Lovable project
+# Finetune Electronics Care
+
+Starting new company/startup which is service based company fully very very much like https://microvisionelectronics.com/
+
+
+Dont mention anything about the microvision company on the site, but use the company name as finetune electronics
+
+
+Keep it damn damn modern and neat and amazingly minimal and neat..
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://finetune-electronics-care.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b1dc60a1-d264-4a50-8ad2-f3e399ed128c).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +30,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
