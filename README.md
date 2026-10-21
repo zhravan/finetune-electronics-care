@@ -1,32 +1,31 @@
-# Finetune Electronics Care
+# Finetune Electronics
 
-Starting new company/startup which is service based company fully very very much like https://microvisionelectronics.com/
+Service-focused electronics design and manufacturing website.
 
+## GitHub Pages deployment checklist
 
-Dont mention anything about the microvision company on the site, but use the company name as finetune electronics
+- [ ] Connect/export this project to your GitHub repository.
+- [ ] Use a repository named `YOUR_USERNAME.github.io` (or `YOUR_ORGANIZATION.github.io`), or configure a custom domain serving the site at `/`. This setup does **not** support `username.github.io/repository/` subpaths.
+- [ ] In the repository, open **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**.
+- [ ] Open **Settings → Secrets and variables → Actions → Variables** and add `VITE_SITE_URL`, containing your actual HTTPS site address, without a repository path. Example: `https://YOUR_USERNAME.github.io`.
+- [ ] If using a custom domain, configure it under **Settings → Pages**, complete DNS verification, and enable HTTPS.
+- [ ] If your default branch is not `main`, update the workflow's branch filter.
+- [ ] Push the setup to the default branch, or run **Actions → Deploy Finetune to GitHub Pages → Run workflow**.
+- [ ] Confirm the workflow succeeds, then open every page directly and refresh it. Check `/sitemap.xml`, `/robots.txt`, photographs, and the downloaded project brief.
+- [ ] Submit the new sitemap address in Google Search Console.
 
+The workflow prerenders all 12 public pages and publishes only `dist/client`. It creates `.nojekyll`, exports a static XML sitemap, and sets the robots sitemap address from `VITE_SITE_URL`. The address is required; no hosting-provider URL is substituted in the GitHub deployment. No badge is added by this deployment.
 
-Keep it damn damn modern and neat and amazingly minimal and neat..
+GitHub Pages serves static files only. The contact page prepares a downloadable enquiry; it does not send it. Future sign-in, payments, or enquiry delivery require a separate service. Deployment has not been run from this project editor; repository settings and a successful Actions run are still required.
 
-This project was built with [Lovable](https://lovable.dev).
+## Local development
 
-**Live app**: https://finetune-electronics-care.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b1dc60a1-d264-4a50-8ad2-f3e399ed128c).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js 22 and Bun.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run dev
+bun run test
 ```
+
+Built with TanStack Start, TypeScript, React and Tailwind CSS.
