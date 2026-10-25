@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import assembly from '@/assets/assembly.jpg';
-import engineering from '@/assets/engineering.jpg';
+import engineering from '@/assets/hero.jpg';
 import { ServiceGrid } from '@/components/site/service-grid';
 import { ProjectCTA } from '@/components/site/layout';
 import { pageHead } from '@/lib/seo';
