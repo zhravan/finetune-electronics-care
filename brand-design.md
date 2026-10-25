@@ -1,7 +1,7 @@
 # Finetune Electronics brand system
 
 ## Identity
-The name is Finetune Electronics. The wordmark is lowercase `finetune.` with an Electronics descriptor. The mark uses three precision step traces and a grounding baseline, connecting electronics and fine adjustment. It is used consistently in navigation, footer and favicon.
+The name is Finetune Electronics. The official logo is the client-supplied circular badge (FINE TUNE / ELECTRONICS around a handshake-and-circuit illustration with circuit-trace rays), shown with its white background removed. It is used as-is in navigation, footer and favicon; do not redesign or recolor it.
 
 ## Visual language
 - Graphite ink and near-white foundations, signal lime for active moments and primary calls to action.
