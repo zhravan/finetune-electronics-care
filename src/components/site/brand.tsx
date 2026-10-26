@@ -11,8 +11,8 @@ export function Brand({ compact = false }: { compact?: boolean }) {
       />
       {!compact && (
         <span className="flex flex-col leading-tight">
-          <span className="text-sm font-semibold tracking-tight text-foreground">Finetune</span>
-          <span className="text-sm font-semibold tracking-tight text-foreground">Electronics</span>
+          <span className="text-sm font-semibold">Finetune</span>
+          <span className="text-sm font-semibold">Electronics</span>
         </span>
       )}
     </span>
