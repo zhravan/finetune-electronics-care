@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { PageIntro } from '@/components/site/page-intro';
 import { ProjectCTA } from '@/components/site/layout';
+import { whatsappLink } from '@/lib/whatsapp';
 import { pageHead } from '@/lib/seo';
 import engineering from '@/assets/team.jpg';
 export const Route = createFileRoute('/about')({ staticData: { sitemap: true }, head: () => pageHead('About our service-first electronics company', 'Meet Finetune Electronics, a new service-focused electronics company connecting design, sourcing, PCB assembly and product integration.', '/about'), component: About });
