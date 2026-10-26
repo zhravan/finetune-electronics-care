@@ -11,4 +11,5 @@
 - [x] Correct production discovery URLs and absolute sharing metadata; verify deployed files.
 - [x] Expand service-specific process, deliverables, review questions and limitations using existing scope only.
 - [x] Add confirmed contact email and accurate organization facts to the website.
-- [ ] Create Google Business Profile: requires exact business address or service area and setup details.
+- [x] Add owner-confirmed office address, Google Maps link and structured postal address.
+- [ ] Create Google Business Profile: requires explicit setup action, Google account connection and remaining listing details.

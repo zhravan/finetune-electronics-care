@@ -22,5 +22,20 @@ it('publishes the confirmed company email and WhatsApp contact', async () => {
   const { organization } = await import('@/lib/company');
   expect(organization.email).toBe('vinod@finetuneelectronics.com');
   expect(organization.telephone).toBe('+919986338671');
-  expect(organization).not.toHaveProperty('address');
+});
+
+it('publishes the owner-confirmed Bengaluru office address', async () => {
+  const { organization, OFFICE_ADDRESS, OFFICE_MAP_URL } = await import('@/lib/company');
+  expect(OFFICE_ADDRESS).toBe('Opp. Arasu Nilaya Apartments, 1st Main Rd, CMR Layout, Lingarajapuram, Bengaluru, Karnataka 560084');
+  expect(organization.address).toEqual({
+    '@type': 'PostalAddress',
+    streetAddress: 'Opp. Arasu Nilaya Apartments, 1st Main Rd, CMR Layout, Lingarajapuram',
+    addressLocality: 'Bengaluru',
+    addressRegion: 'Karnataka',
+    postalCode: '560084',
+    addressCountry: 'IN',
+  });
+  expect(new URL(OFFICE_MAP_URL).hostname).toBe('www.google.com');
+  expect(OFFICE_MAP_URL).toContain('MObcyjoSkrS-g0oWaR1e9g');
+  expect(organization).not.toHaveProperty('geo');
 });
