@@ -10,6 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { organization } from "@/lib/company";
+
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader, SiteFooter } from "@/components/site/layout";
@@ -99,8 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Finetune Electronics",
+          ...organization,
           description: "Electronics design and manufacturing services: PCB assembly, box build, PCB layout, enclosures, engineering and component procurement.",
           knowsAbout: ["PCB assembly", "Box build", "PCB layout", "Mechanical enclosures", "Electronics engineering", "Component procurement"],
         }),
