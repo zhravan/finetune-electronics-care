@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CareersRouteImport } from './routes/careers'
-import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjectGuideRouteImport } from './routes/project-guide'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -32,11 +31,6 @@ const AboutRoute = AboutRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectGuideRoute = ProjectGuideRouteImport.update({
@@ -69,7 +63,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -80,7 +73,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/$service': typeof ServicesServiceRoute
@@ -91,7 +83,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
   '/project-guide': typeof ProjectGuideRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -104,7 +95,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
-    | '/contact'
     | '/project-guide'
     | '/services'
     | '/sitemap.xml'
@@ -115,7 +105,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
-    | '/contact'
     | '/project-guide'
     | '/sitemap.xml'
     | '/services/$service'
@@ -125,7 +114,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
-    | '/contact'
     | '/project-guide'
     | '/services'
     | '/sitemap.xml'
@@ -137,7 +125,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
-  ContactRoute: typeof ContactRoute
   ProjectGuideRoute: typeof ProjectGuideRoute
   ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -164,13 +151,6 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/project-guide': {
@@ -229,7 +209,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
-  ContactRoute: ContactRoute,
   ProjectGuideRoute: ProjectGuideRoute,
   ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

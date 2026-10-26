@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { PageIntro } from '@/components/site/page-intro';
 import { ProjectCTA } from '@/components/site/layout';
-import { whatsappLink } from '@/lib/whatsapp';
 import { services } from '@/lib/services';
 import { pageHead } from '@/lib/seo';
 export const Route = createFileRoute('/project-guide')({ staticData: { sitemap: true }, head: () => pageHead('PCB assembly & electronics project preparation guide', 'Prepare an electronics project enquiry: BOM, Gerber files, assembly drawings, quantities, sourcing requirements and acceptance criteria.', '/project-guide'), component: Guide });
