@@ -4,7 +4,7 @@
 The name is Finetune Electronics. The official logo is the client-supplied circular badge (FINE TUNE / ELECTRONICS around a handshake-and-circuit illustration with circuit-trace rays), shown with its white background removed. It is used as-is in navigation, footer and favicon; do not redesign or recolor it.
 
 ## Visual language
-- Graphite ink and near-white foundations, signal lime for active moments and primary calls to action.
+- Graphite ink and near-white foundations, logo-inspired burgundy for primary calls to action and clear blue accents for supporting moments. Pale blue service bands keep the palette light; the logo itself remains unchanged.
 - Geist for clear technical communication; Geist Mono for small service labels and process numbering.
 - Zero letter spacing, measured typographic hierarchy, generous unframed layouts and fine dividing rules.
 - Small-radius images and controls; no decorative containers around sections.
@@ -14,4 +14,4 @@ The name is Finetune Electronics. The official logo is the client-supplied circu
 Precise, direct, service-first. Lead with the work and the project requirements. Avoid unverifiable claims, certifications, customer logos, turnaround promises or numerical performance metrics.
 
 ## Usage
-Use the shared brand mark and semantic CSS tokens, not page-specific colors. Use lime sparingly. Photography should show the subject clearly. Primary actions lead to a project conversation; service links lead to focused detail pages.
+Use the shared brand mark and semantic CSS tokens, not page-specific colors. Use burgundy and blue sparingly. Photography should show the subject clearly. Primary actions lead to a project conversation; service links lead to focused detail pages.
