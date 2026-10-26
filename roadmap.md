@@ -6,4 +6,5 @@
 - [x] Public sitemap with configurable production URL.
 - [x] Add GitHub Pages deployment setup and checklist.
 - [x] Remove visible platform branding and hide the published badge.
+- [ ] Refine editorial typography, manufacturing hero, footer contact details and restrained interactions; verify desktop and mobile.
 - [ ] Run GitHub Pages deployment: requires repository Pages settings and the public site address.
