@@ -1,5 +1,27 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { sitemapXML } from "@/lib/sitemap";
+
+describe("production sitemap address", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
+  it("defaults to the current published Finetune site", async () => {
+    vi.stubEnv("VITE_SITE_URL", "");
+    vi.resetModules();
+    const { SITE_URL } = await import("@/lib/site");
+    expect(SITE_URL).toBe("https://finetune-electronics-care.lovable.app");
+    expect(sitemapXML(SITE_URL, [{ path: "/about" }])).toContain("<loc>https://finetune-electronics-care.lovable.app/about</loc>");
+  });
+
+  it("preserves a configured GitHub Pages deployment address", async () => {
+    vi.stubEnv("VITE_SITE_URL", "https://zhravan.github.io/finetune-electronics-care/");
+    vi.resetModules();
+    const { SITE_URL } = await import("@/lib/site");
+    expect(SITE_URL).toBe("https://zhravan.github.io/finetune-electronics-care");
+  });
+});
 
 describe("sitemapXML", () => {
   it("keeps the GitHub Pages repository path on every URL", () => {
