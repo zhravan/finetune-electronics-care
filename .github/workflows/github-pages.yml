@@ -19,8 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: 'true'
-      # The default is this repository's project Pages URL. Override for a custom domain.
-      VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://zhravan.github.io/finetune-electronics-care' }}
+      # Custom domain is hosted at the origin root, not under /<repository>/.
+      # Set the VITE_SITE_URL repository variable only when overriding this.
+      VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://finetuneelectronics.com' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,6 +36,31 @@ jobs:
         run: node --input-type=module -e "import { pagesOrigin } from './scripts/prepare-github-pages.mjs'; pagesOrigin(process.env.VITE_SITE_URL);"
       - run: bun run build
       - run: node scripts/prepare-github-pages.mjs .output/public
+      - name: Ensure custom-domain asset URLs use the domain root
+        run: |
+          node --input-type=module <<'NODE'
+          import { readdir, readFile, writeFile } from 'node:fs/promises';
+          import { resolve, relative, dirname } from 'node:path';
+
+          const root = resolve('.output/public');
+          async function walk(folder) {
+            for (const entry of await readdir(folder, { withFileTypes: true })) {
+              const file = resolve(folder, entry.name);
+              if (entry.isDirectory()) {
+                await walk(file);
+                continue;
+              }
+              if (entry.name !== 'index.html') continue;
+              let html = await readFile(file, 'utf8');
+              // For a custom domain, generated asset and favicon paths must be root-relative.
+              html = html.replaceAll('/finetune-electronics-care/assets/', '/assets/');
+              html = html.replaceAll('/finetune-electronics-care/favicon.png', '/favicon.png');
+              await writeFile(file, html);
+              console.log(`Checked asset paths in ${relative(root, file) || 'index.html'}`);
+            }
+          }
+          await walk(root);
+          NODE
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
