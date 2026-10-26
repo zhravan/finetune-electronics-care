@@ -12,7 +12,7 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
     ...(isGitHubPages ? {
-      pages: ['/', '/about', '/careers', '/contact', '/project-guide', '/services', '/services/pcb-assembly', '/services/box-build', '/services/pcb-layout', '/services/mechanical-enclosures', '/services/engineering', '/services/component-procurement'].map(path => ({ path })),
+      pages: ['/', '/about', '/careers', '/project-guide', '/services', '/services/pcb-assembly', '/services/box-build', '/services/pcb-layout', '/services/mechanical-enclosures', '/services/engineering', '/services/component-procurement'].map(path => ({ path })),
       prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false, failOnError: true },
     } : {}),
   },

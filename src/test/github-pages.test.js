@@ -5,10 +5,10 @@ import { describe, expect, it } from 'vitest';
 import { pagesOrigin, preparePages } from '../../scripts/prepare-github-pages.mjs';
 
 describe('GitHub Pages deployment', () => {
-  it('requires an explicit root-domain HTTPS deployment address', () => {
-    expect(pagesOrigin('https://finetune.github.io/')).toBe('https://finetune.github.io');
-    expect(() => pagesOrigin(undefined)).toThrow();
-    expect(() => pagesOrigin('https://finetune.github.io/company/')).toThrow();
+  it('keeps GitHub Pages subpaths and requires HTTPS at a domain root origin', () => {
+    expect(pagesOrigin('https://finetune.github.io/')).toEqual({ origin: 'https://finetune.github.io', basePath: '' });
+    expect(pagesOrigin('https://finetune.github.io/company/')).toEqual({ origin: 'https://finetune.github.io', basePath: '/company' });
+    expect(() => pagesOrigin(undefined)).not.toThrow();
     expect(() => pagesOrigin('http://finetune.github.io')).toThrow();
   });
 

@@ -74,12 +74,14 @@ export function sitemapXML(baseURL: string, entries: SitemapEntry[]): string {
     !/^https?:$/.test(origin.protocol) ||
     origin.username ||
     origin.password ||
-    origin.pathname !== "/" ||
     origin.search ||
     origin.hash
   ) {
     throw new Error("The sitemap base URL must be the public site origin");
   }
+  // GitHub project Pages sites live below /<repository>/; custom domains live at /.
+  // Keep the repository path on every generated URL instead of rejecting it.
+  const basePath = origin.pathname.replace(/\/+$/, "");
   const escape = (value: string) =>
     value.replace(
       /[&<>"']/g,
@@ -90,7 +92,7 @@ export function sitemapXML(baseURL: string, entries: SitemapEntry[]): string {
   const urls: string[] = [];
   for (const entry of entries) {
     if (!isSafeSitemapPath(entry.path)) throw new Error("Invalid sitemap path");
-    const url = new URL(entry.path, origin);
+    const url = new URL(`${basePath}${entry.path}`, origin);
     if (seen.has(url.href)) continue;
     seen.add(url.href);
     urls.push(
