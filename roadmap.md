@@ -8,3 +8,7 @@
 - [x] Remove visible platform branding and hide the published badge.
 - [x] Refine editorial typography, manufacturing hero, footer contact details and restrained interactions; verify desktop and mobile.
 - [ ] Run GitHub Pages deployment: requires repository Pages settings and the public site address.
+- [ ] Correct production discovery URLs and absolute sharing metadata; verify deployed files.
+- [ ] Expand service-specific process, deliverables, review questions and limitations using existing scope only.
+- [ ] Publish confirmed contact email and accurate organization facts.
+- [ ] Create Google Business Profile: requires exact business address or service area and setup details.
