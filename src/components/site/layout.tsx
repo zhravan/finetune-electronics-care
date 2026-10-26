@@ -4,7 +4,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Brand } from './brand';
 import { services } from '@/lib/services';
-import { COMPANY_EMAIL } from '@/lib/company';
+import { COMPANY_EMAIL, OFFICE_ADDRESS, OFFICE_MAP_URL } from '@/lib/company';
 import { whatsappLink } from '@/lib/whatsapp';
 
 const nav = [{ to: '/services', label: 'Services' }, { to: '/about', label: 'Company' }, { to: '/project-guide', label: 'Project guide' }, { to: '/careers', label: 'Careers' }] as const;
@@ -23,7 +23,7 @@ export function SiteFooter() {
        <div className="md:justify-self-end"><p className="eyebrow mb-4 text-ink-foreground/60">Project enquiries / WhatsApp</p><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="footer-link block font-mono text-xl">+91 99863 38671</a><a href={`mailto:${COMPANY_EMAIL}`} className="footer-link mt-3 block break-all text-sm">{COMPANY_EMAIL}</a><Button asChild size="lg" className="mt-6 h-12 bg-primary text-primary-foreground shadow-none hover:bg-primary/90"><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">Start your project <ArrowUpRight /></a></Button></div>
      </div>
      <div className="grid gap-12 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
-       <div><Link to="/" aria-label="Finetune Electronics home"><Brand /></Link><p className="mt-5 text-lg font-medium">Finetune Electronics</p><p className="mt-3 max-w-xs text-sm leading-7 text-ink-foreground/65">Considered design. Connected delivery.<br/>Electronics manufacturing services.</p></div>
+       <div><Link to="/" aria-label="Finetune Electronics home"><Brand /></Link><p className="mt-5 text-lg font-medium">Finetune Electronics</p><p className="mt-3 max-w-xs text-sm leading-7 text-ink-foreground/65">Considered design. Connected delivery.<br/>Electronics manufacturing services.</p><address className="mt-6 max-w-sm text-sm not-italic leading-7 text-ink-foreground/65">{OFFICE_ADDRESS}</address><Button asChild variant="link" className="mt-2 px-0 text-ink-foreground hover:text-accent"><a href={OFFICE_MAP_URL} target="_blank" rel="noopener noreferrer">View office on Google Maps<ArrowUpRight/></a></Button></div>
        <div><p className="eyebrow mb-6 text-ink-foreground/50">Services</p><div className="flex flex-col items-start gap-3">{services.map(s => <Link key={s.slug} to="/services/$service" params={{ service: s.slug }} className="footer-link text-sm">{s.title}</Link>)}</div></div>
        <div><p className="eyebrow mb-6 text-ink-foreground/50">Finetune</p><div className="flex flex-col items-start gap-3">{nav.filter(n=>n.to!=='/services').map(n=><Link key={n.to} to={n.to} className="footer-link text-sm">{n.label}</Link>)}<a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="footer-link text-sm">WhatsApp us</a></div></div>
      </div>
