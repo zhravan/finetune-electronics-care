@@ -11,8 +11,8 @@ describe("production sitemap address", () => {
     vi.stubEnv("VITE_SITE_URL", "");
     vi.resetModules();
     const { SITE_URL } = await import("@/lib/site");
-    expect(SITE_URL).toBe("https://finetune-electronics-care.lovable.app");
-    expect(sitemapXML(SITE_URL, [{ path: "/about" }])).toContain("<loc>https://finetune-electronics-care.lovable.app/about</loc>");
+    expect(SITE_URL).toBe("https://finetuneelectronics.com");
+    expect(sitemapXML(SITE_URL, [{ path: "/about" }])).toContain("<loc>https://finetuneelectronics.com/about</loc>");
   });
 
   it("preserves a configured GitHub Pages deployment address", async () => {

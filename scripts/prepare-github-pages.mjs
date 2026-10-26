@@ -3,7 +3,7 @@ import { resolve, relative, dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export function pagesOrigin(value) {
-  const candidate = value?.trim() || 'https://zhravan.github.io/finetune-electronics-care/';
+  const candidate = value?.trim() || 'https://finetuneelectronics.com';
   const url = new URL(candidate);
   if (url.protocol !== 'https:' || url.search || url.hash || url.username || url.password) {
     throw new Error('VITE_SITE_URL must be a public HTTPS GitHub Pages URL or custom domain.');

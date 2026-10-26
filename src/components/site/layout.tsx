@@ -4,6 +4,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Brand } from './brand';
 import { services } from '@/lib/services';
+import { COMPANY_EMAIL } from '@/lib/company';
 import { whatsappLink } from '@/lib/whatsapp';
 
 const nav = [{ to: '/services', label: 'Services' }, { to: '/about', label: 'Company' }, { to: '/project-guide', label: 'Project guide' }, { to: '/careers', label: 'Careers' }] as const;
@@ -19,7 +20,7 @@ export function SiteFooter() {
    <div className="site-container">
      <div className="grid gap-10 border-b border-ink-foreground/20 py-16 md:grid-cols-[1.5fr_1fr] md:items-end md:py-20">
        <div><p className="eyebrow text-accent">Every detail. Every connection.</p><h2 className="footer-title mt-6">Your next build<br/>starts here<span className="text-accent">.</span></h2></div>
-       <div className="md:justify-self-end"><p className="eyebrow mb-4 text-ink-foreground/60">Project enquiries / WhatsApp</p><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="footer-link block font-mono text-xl">+91 99863 38671</a><Button asChild size="lg" className="mt-6 h-12 bg-primary text-primary-foreground shadow-none hover:bg-primary/90"><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">Start your project <ArrowUpRight /></a></Button></div>
+       <div className="md:justify-self-end"><p className="eyebrow mb-4 text-ink-foreground/60">Project enquiries / WhatsApp</p><a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="footer-link block font-mono text-xl">+91 99863 38671</a><a href={`mailto:${COMPANY_EMAIL}`} className="footer-link mt-3 block break-all text-sm">{COMPANY_EMAIL}</a><Button asChild size="lg" className="mt-6 h-12 bg-primary text-primary-foreground shadow-none hover:bg-primary/90"><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">Start your project <ArrowUpRight /></a></Button></div>
      </div>
      <div className="grid gap-12 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
        <div><Link to="/" aria-label="Finetune Electronics home"><Brand /></Link><p className="mt-5 text-lg font-medium">Finetune Electronics</p><p className="mt-3 max-w-xs text-sm leading-7 text-ink-foreground/65">Considered design. Connected delivery.<br/>Electronics manufacturing services.</p></div>

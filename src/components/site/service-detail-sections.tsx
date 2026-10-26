@@ -1,0 +1,11 @@
+import { serviceDetails } from '@/lib/service-details';
+import type { Service } from '@/lib/services';
+
+export function ServiceDetailSections({ service }: { service: Service }) {
+  const detail = serviceDetails[service.slug];
+  return <>
+    <section className="border-y border-border bg-secondary"><div className="site-container py-16"><p className="eyebrow text-muted-foreground">Process / {service.label}</p><h2 className="mt-4 text-3xl md:text-4xl">From requirements to an agreed handoff.</h2><div className="mt-10 grid gap-8 md:grid-cols-3">{detail.process.map(([title, text], index) => <div key={title} className="border-t border-border pt-5"><span className="font-mono text-xs text-muted-foreground">0{index + 1}</span><h3 className="mt-4 text-lg font-medium">{title}</h3><p className="mt-3 leading-7 text-muted-foreground">{text}</p></div>)}</div></div></section>
+    <section className="site-container grid gap-12 py-16 md:grid-cols-2"><div><p className="eyebrow text-muted-foreground">Deliverables to agree</p><h2 className="mt-4 text-3xl">Define what changes hands.</h2><ul className="mt-6 list-disc space-y-4 pl-5 text-muted-foreground">{detail.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><p className="eyebrow text-muted-foreground">Quality review</p><h2 className="mt-4 text-3xl">Make acceptance specific.</h2><p className="mt-5 leading-7 text-muted-foreground">Set the review method and evidence required for these project-specific checks.</p><ul className="mt-6 list-disc space-y-4 pl-5 text-muted-foreground">{detail.checks.map(item => <li key={item}>{item}</li>)}</ul></div><div className="border-t border-border pt-8 md:col-span-2"><h3 className="text-lg font-medium">Scope boundaries</h3><p className="mt-4 max-w-4xl leading-7 text-muted-foreground">{detail.limits}</p></div></section>
+    <section className="site-container border-t border-border py-16"><p className="eyebrow text-muted-foreground">Common questions</p><h2 className="mt-4 text-3xl">Before you enquire.</h2><div className="mt-8 grid gap-x-12 md:grid-cols-2">{detail.faqs.map(([question, answer]) => <div key={question} className="border-t border-border py-6"><h3 className="text-lg font-medium">{question}</h3><p className="mt-4 leading-7 text-muted-foreground">{answer}</p></div>)}</div></section>
+  </>;
+}

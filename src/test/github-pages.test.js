@@ -9,6 +9,7 @@ describe('GitHub Pages deployment', () => {
     expect(pagesOrigin('https://finetune.github.io/')).toEqual({ origin: 'https://finetune.github.io', basePath: '' });
     expect(pagesOrigin('https://finetune.github.io/company/')).toEqual({ origin: 'https://finetune.github.io', basePath: '/company' });
     expect(() => pagesOrigin(undefined)).not.toThrow();
+    expect(pagesOrigin(undefined)).toEqual({ origin: 'https://finetuneelectronics.com', basePath: '' });
     expect(() => pagesOrigin('http://finetune.github.io')).toThrow();
   });
 

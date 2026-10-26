@@ -7,4 +7,8 @@
 - [x] Add GitHub Pages deployment setup and checklist.
 - [x] Remove visible platform branding and hide the published badge.
 - [x] Refine editorial typography, manufacturing hero, footer contact details and restrained interactions; verify desktop and mobile.
-- [ ] Run GitHub Pages deployment: requires repository Pages settings and the public site address.
+- [ ] Deploy latest GitHub Pages changes: requires repository access to trigger the workflow.
+- [x] Correct production discovery URLs and absolute sharing metadata; verify deployed files.
+- [x] Expand service-specific process, deliverables, review questions and limitations using existing scope only.
+- [x] Add confirmed contact email and accurate organization facts to the website.
+- [ ] Create Google Business Profile: requires exact business address or service area and setup details.
